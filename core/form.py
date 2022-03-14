@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Pessoa, Veiculo
+from .models import MovRotativo, Pessoa, Veiculo
 
 
 # Form puxando o banco de dados Pessoa
@@ -16,3 +16,9 @@ class VeiculoForm(ModelForm):
     class Meta:
         model = Veiculo  # Puxando o nome do modelo do banco
         fields = '__all__'  # Selecionando todos os campos do modelo Veiculo
+
+
+class MovRotativoForm(ModelForm):
+    class Meta:
+        model = MovRotativo
+        fields = '__all__'
