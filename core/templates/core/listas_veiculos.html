@@ -18,5 +18,15 @@
         {% endfor %}
 
     </ul>
+
+    <!-- Form para Cadastro de Veiculos -->
+    <form action="{% url 'core_veiculo_novo' %}" method='POST'> <!-- Puxando o form com o method POST -->
+        {% csrf_token %} <!-- Token de seguranca -->
+
+        {{form.as_p}} <!-- Pucandp a var que tem os campos ao banco de dados -->
+
+        <button type='submit'>Cadastrar</button>
+    </form>
+
 </body>
 </html>

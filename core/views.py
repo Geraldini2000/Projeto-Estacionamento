@@ -1,7 +1,7 @@
 
 from django.shortcuts import redirect, render
 
-from .form import PessoaForm
+from .form import PessoaForm, VeiculoForm
 from .models import Mensalista, MovMensalista, MovRotativo, Pessoa, Veiculo
 
 
@@ -27,7 +27,19 @@ def pessoa_novo(request):
 
 def lista_veiculos(request):
     veiculo = Veiculo.objects.all()
-    return render(request, 'core/listas_veiculos.html', {'veiculos': veiculo})
+    form = VeiculoForm()  # Recebendo o valor do Form na var
+    # Adicionando os valores das vatiaveis para outra var
+    data = {'veiculos': veiculo, 'form': form}
+    # Retornando o url padrap
+    return render(request, 'core/listas_veiculos.html', data)
+
+
+def veiculo_novo(request):
+    form = VeiculoForm(request.POST or None)
+    if form.is_valid():  # Puxando o valor do form com um if
+        form.save()  # Salvando o form
+    # Redirecionando para a url padrao ao salvar os dados
+    return redirect('core_lista_veiculos')
 
 
 def list_movrotativos(request):
