@@ -3,8 +3,8 @@ from django.urls import path
 
 from .views import (home, list_mensalista, list_mov_mensalista,
                     list_movrotativos, lista_pessoas, lista_veiculos,
-                    mensalista_novo, movrotativos_novo, pessoa_novo,
-                    veiculo_novo)
+                    mensalista_novo, movmensalista_novo, movrotativos_novo,
+                    pessoa_novo, veiculo_novo)
 
 urlpatterns = [
     path('', home, name='core_home'),
@@ -17,4 +17,6 @@ urlpatterns = [
     path('mensalistas/', list_mensalista, name='core_list_mensalista'),
     path('mensalista-novo/', mensalista_novo, name='core_mensalista_novo'),
     path('mov_mensal/', list_mov_mensalista, name='core_list_mov_mensalista'),
+    path('mov_mensal_novo/', movmensalista_novo,
+         name='core_movmensalista_novo'),
 ]

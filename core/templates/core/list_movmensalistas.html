@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Listas Movimentos Mensal</h2>
+    <h2>Listas Movimentos Mensalista</h2>
 
     <!-- Funcao para listar as pessoas do banco no template com for -->
     <ul>
@@ -18,5 +18,14 @@
         {% endfor %}
 
     </ul>
+
+        <!-- Form para Cadastro de MovRotativos -->
+        <form action="{% url 'core_movmensalista_novo' %}" method='POST'> <!-- Puxando o form com o method POST -->
+            {% csrf_token %} <!-- Token de seguranca -->
+        
+            {{form.as_p}} <!-- Puxando a var que tem os campos ao banco de dados -->
+        
+            <button type='submit'>Cadastrar</button>
+        </form>
 </body>
 </html>

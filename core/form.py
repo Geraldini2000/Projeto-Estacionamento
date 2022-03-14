@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Mensalista, MovRotativo, Pessoa, Veiculo
+from .models import Mensalista, MovMensalista, MovRotativo, Pessoa, Veiculo
 
 
 # Form puxando o banco de dados Pessoa
@@ -27,4 +27,10 @@ class MovRotativoForm(ModelForm):
 class MensalistaForm(ModelForm):
     class Meta:
         model = Mensalista
+        fields = '__all__'
+
+
+class MovMensalsitaForm(ModelForm):
+    class Meta:
+        model = MovMensalista
         fields = '__all__'
