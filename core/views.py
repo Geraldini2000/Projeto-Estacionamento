@@ -1,6 +1,7 @@
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
+from .form import PessoaForm
 from .models import Mensalista, MovMensalista, MovRotativo, Pessoa, Veiculo
 
 
@@ -11,7 +12,17 @@ def home(request):
 
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
-    return render(request, 'core/listas_pessoas.html', {'pessoa': pessoas})
+    form = PessoaForm()  # Passando o valor do banco para a var form
+    # add o valor das var para outra var
+    data = {'pessoa': pessoas, 'form': form}
+    return render(request, 'core/listas_pessoas.html', data)
+
+
+def pessoa_novo(request):
+    form = PessoaForm(request.POST or None)
+    if form.is_valid():  # Puxando o valor do form com um if
+        form.save()  # Salvando o form
+    return redirect('core_lista_pessoas')
 
 
 def lista_veiculos(request):
