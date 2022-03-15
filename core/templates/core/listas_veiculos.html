@@ -13,7 +13,10 @@
     <ul>
         {% for veiculo in veiculos%}
 
-        <li>{{veiculo.placa}}</li>
+        <li>
+            <a href="core_veiculo_update" veiculo.id>{{ veiculo.placa }} </a>
+        </li>
+
 
         {% endfor %}
 

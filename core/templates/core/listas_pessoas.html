@@ -13,7 +13,9 @@
     <ul>
         {% for pessoas in pessoa%}
 
-        <li>{{pessoas.nome}}</li>
+        <li>
+            <a href="core_pessoa_update" pessoa.id>{{ pessoas.nome }} </a>
+        </li>
 
         {% endfor %}
 

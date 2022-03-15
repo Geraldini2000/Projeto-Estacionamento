@@ -26,6 +26,21 @@ def pessoa_novo(request):
     return redirect('core_lista_pessoas')
 
 
+def pessoa_update(request, id):
+    data = {}
+    pessoa = Pessoa.objects.get(id == id)
+    form = PessoaForm(request.POST or None, instance=pessoa)
+    data['pessoa'] = pessoa
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_pessoas')
+    else:
+        return render(request, 'core/update_pessoa.html', data)
+
+
 def lista_veiculos(request):
     veiculo = Veiculo.objects.all()
     form = VeiculoForm()  # Recebendo o valor do Form na var
@@ -41,6 +56,21 @@ def veiculo_novo(request):
         form.save()  # Salvando o form
     # Redirecionando para a url padrao ao salvar os dados
     return redirect('core_lista_veiculos')
+
+
+def veiculo_update(request, id):
+    data = {}
+    veiculo = Veiculo.objects.get(id == id)
+    form = VeiculoForm(request.POST or None, instance=veiculo)
+    data['veiculo'] = veiculo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_veiculos')
+    else:
+        return render(request, 'core/update_veiculo.html', data)
 
 
 def list_movrotativos(request):
