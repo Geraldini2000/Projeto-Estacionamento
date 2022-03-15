@@ -153,3 +153,18 @@ def movmensalista_novo(request):
     if form.is_valid():
         form.save()
     return redirect('core_list_mov_mensalista')
+
+
+def movmensalista_update(request, id):
+    data = {}
+    mov_mensalista = MovMensalista.objects.get(id=id)
+    form = MovMensalsitaForm(request.POST or None, instance=mov_mensalista)
+    data['mov_mensalista'] = mov_mensalista
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_list_mov_mensalista')
+    else:
+        return render(request, 'core/update_movmensalista.html', data)
