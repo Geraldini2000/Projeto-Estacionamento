@@ -13,7 +13,11 @@
     <ul>
         {% for mov in mov_mensalistas%}
 
-        <li>{{mov.mensalista}} - {{mov.dt_pgto}}</li>
+        <li> 
+            <a href="{% url 'core_movrotativos_update' mov.id %}">
+                {{ mov.checkin }} - {{ mov.veiculo.placa }}  
+            </a>
+        </li>
 
         {% endfor %}
 

@@ -10,6 +10,8 @@ def home(request):
     context = {'mensagem': 'Ola Mundo'}
     return render(request, 'core/index.html', context=context)
 
+# Pessoa
+
 
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
@@ -39,6 +41,8 @@ def pessoa_update(request, id):
             return redirect('core_lista_pessoas')
     else:
         return render(request, 'core/update_pessoa.html', data)
+
+# Veiculo
 
 
 def lista_veiculos(request):
@@ -72,6 +76,8 @@ def veiculo_update(request, id):
     else:
         return render(request, 'core/update_veiculo.html', data)
 
+# Movimentos rotativos
+
 
 def list_movrotativos(request):
     mov_rot = MovRotativo.objects.all()
@@ -85,6 +91,23 @@ def movrotativos_novo(request):
     if form.is_valid():
         form.save()
     return redirect('core_list_movrotativos')
+
+
+def movrotativos_update(request, id):
+    data = {}
+    mov_rotativo = MovRotativo.objects.get(id == id)
+    form = MovRotativoForm(request.POST or None, instance=mov_rotativo)
+    data['mov_rotativo '] = mov_rotativo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_list_movrotativos')
+    else:
+        return render(request, 'core/update_movrotativos.html', data)
+
+# Mensalista
 
 
 def list_mensalista(request):
@@ -102,6 +125,22 @@ def mensalista_novo(request):
     return redirect('core_list_mensalista')
 
 
+def mensalista_update(request, id):
+    data = {}
+    mensalista = Mensalista.objects.get(id=id)
+    form = MensalistaForm(request.POST or None, instance=mensalista)
+    data['mensalista'] = mensalista
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_list_mensalista')
+    else:
+        return render(request, 'core/update_mensalista.html', data)
+
+
+# Movimento Mensalista
 def list_mov_mensalista(request):
     mov_mensalistas = MovMensalista.objects.all()
     form = MovMensalsitaForm()
